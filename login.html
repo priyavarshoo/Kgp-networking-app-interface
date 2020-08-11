@@ -1,11 +1,11 @@
-{% extends "layout.html" %}
+{% extends "layout1.html" %}
 {% block content %}
 
-	<div class="login">
+	<div class="login jumbotron">
 	<form method = "POST" action="">
 		{{ form.hidden_tag() }}
 		<fieldset class="form-gp">
-			<legend class="border-bottom mb-4">Log In</legend>
+			<legend class="border-bottom mb-4"><h2>Log In</h2></legend>
 			
 			<div class="form-group">
 				{{ form.email.label(class="form-control-label") }}
