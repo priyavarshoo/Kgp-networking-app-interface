@@ -1,5 +1,5 @@
 from datetime import datetime
-from flask import Flask, render_template, flash, redirect
+from flask import Flask, render_template, flash, redirect,url_for
 from flask_sqlalchemy import SQLAlchemy
 from forms import RegForm, LoginForm
 import os
@@ -46,25 +46,35 @@ posts = [
     }
 ]
 
-@app.route('/')
-@app.route('/home')
-def home():
-    return render_template('home.html', posts=posts)
-
-@app.route('/about')
-def about():
-    return render_template('about.html', title="About")
-
-@app.route('/register', methods=['GET', 'POST'])
+@app.route("/")
+@app.route("/register",methods=['GET', 'POST'])
 def register():
-    form = RegForm()
+    form = RegistrationForm()
     if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
-    
-    return render_template('register.html', title="Register", form=form)
 
-@app.route('/login', methods=['GET', 'POST'])
+    return render_template('register.html',title='User Sign Up', form = form)
+
+
+@app.route("/adregister", methods=['GET','POST'])
+def adregister():
+    form = AdminRegistrationForm()
+    if form.validate_on_submit():
+        flash(f'Account created for {form.username.data}!', 'success')
+        return redirect(url_for('home'))
+
+    return render_template('adregister.html',title='Admin Sign Up' ,form = form)
+
+@app.route("/home")
+def home():
+    return render_template('home.html',posts=posts,title='Home')
+
+
+    
+
+
+@app.route("/login", methods=['GET', 'POST'])
 def login():
     form = LoginForm()
     if form.validate_on_submit():
