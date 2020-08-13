@@ -33,19 +33,28 @@ class Post(db.Model):
     
 posts = [
     {
-        'author': 'Sudha Murty',
-        'title': 'Wise and Otherwise',
-        'content': 'Stories from real life',
+         'author': 'Abc Def',
+        'title': 'Foundation Day Celebration',
+        'content': 'XXXXX XX XXXXXXXx',
         'date_posted': 'April 28, 2017'
     },
     {
-        'author': 'Enid Blyton',
-        'title': 'Secret Seven',
-        'content': 'This is a nice fiction',
-        'date_posted': 'July 2, 2005'
+        'author': 'Dr. Ranjita Bhagwan',
+        'title': 'Seminar on "Using Data to Build Better Systems and Services" ',
+        'content': 'Microsoft Research',
+        'date_posted': 'January 16, 2020'
     }
 ]
 
+
+@app.route("/signup")
+def signup():
+    return render_template('signup.html', title='Sign Up')
+    
+@app.route("/logincom")
+def logincom():
+    return render_template('logincom.html', title='Log In')
+    
 @app.route("/")
 @app.route("/register",methods=['GET', 'POST'])
 def register():
@@ -60,11 +69,11 @@ def register():
 @app.route("/adregister",methods=['GET','POST'])
 def adregister():
     form = AdminRegistrationForm()
-     if form.validate_on_submit():
+    if form.validate_on_submit():
         flash(f'Account created for {form.username.data}!', 'success')
         return redirect(url_for('home'))
    
-return render_template('adregister.html',title='Admin Sign Up' ,form = form)
+    return render_template('adregister.html',title='Admin Sign Up' ,form = form)
 
 
 
