@@ -13,6 +13,7 @@ class RegistrationForm(FlaskForm):
     department= StringField('Department',validators=[DataRequired(),Length(max=50)])
     hostel= StringField('Hall Of Residence/Hostel',validators=[DataRequired(),Length(max=80)])
     submit =SubmitField('Sign Up')
+    
 class AdminRegistrationForm(FlaskForm):
     username = StringField('Username', validators=[DataRequired(), Length(min=5 , max=20)])
     email = StringField('Email', validators=[DataRequired(), Email()])
